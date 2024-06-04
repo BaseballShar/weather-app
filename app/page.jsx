@@ -1,5 +1,7 @@
 "use client";
 
+import LoadingPanel from "@/components/LoadingPanel";
+import WeatherSummary from "@/components/WeatherSummary";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -21,10 +23,12 @@ export default function Home() {
         const temperature = data.temperature.data[2].value;
         const humidity = data.humidity.data[0].value;
         const rainfall = data.rainfall.data[7].max;
+        const uv = data.uvindex.data[0].value;
         const weatherData = {
           humidity: `${humidity}%`,
           temperature: `${temperature}°C`,
           rainfall: `${rainfall}mm`,
+          uv: uv
         };
         console.log(weatherData);
         setWeatherData(weatherData);
@@ -56,30 +60,20 @@ export default function Home() {
   useEffect(() => {
     getCurrentWeather();
     getNineDaysWeather();
-  });
+  }, []);
+
+  if (!weatherData || !nineDaysWeather) {
+    return <LoadingPanel />;
+  }
 
   return (
     <div className="bg-blue-50 h-screen">
-      <div className="bg-blue-100 flex justify-around text-xl">
-        {weatherData ? (
-          <>
-            <p>Temperature: {weatherData.temperature}</p>
-            <p>Humidity: {weatherData.humidity}</p>
-            <p>Rainfall: {weatherData.rainfall}</p>
-          </>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
+      <WeatherSummary weatherData={weatherData}/>
       <div className="bg-blue-200 flex flex-col items-center text-2xl m-4">
         <h1>9 Days forecast</h1>
-        {nineDaysWeather ? (
-          nineDaysWeather.map((forecast, idx) => (
-            <p key={idx}>{formatDailyForecast(forecast)}</p>
-          ))
-        ) : (
-          <p>Loading...</p>
-        )}
+        {nineDaysWeather.map((forecast, idx) => (
+          <p key={idx}>{formatDailyForecast(forecast)}</p>
+        ))}
       </div>
     </div>
   );
