@@ -1,7 +1,7 @@
 "use client";
 
 import LoadingPanel from "@/components/LoadingPanel";
-import WeatherSummary from "@/components/WeatherSummary";
+import WeatherCard from "@/components/WeatherCard";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -23,12 +23,13 @@ export default function Home() {
         const temperature = data.temperature.data[2].value;
         const humidity = data.humidity.data[0].value;
         const rainfall = data.rainfall.data[7].max;
-        const uv = data.uvindex.data[0].value;
+        /* const uv = data.uvindex.data[0].value; */
         const weatherData = {
           humidity: `${humidity}%`,
           temperature: `${temperature}°C`,
           rainfall: `${rainfall}mm`,
-          uv: uv
+          /* uv: uv, */
+          icon: data.icon[0]
         };
         console.log(weatherData);
         setWeatherData(weatherData);
@@ -67,8 +68,10 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-blue-50 h-screen">
-      <WeatherSummary weatherData={weatherData}/>
+    <div className="bg-blue-50 h-full grid grid-cols-3">
+      <WeatherCard weatherData={weatherData}/>
+      <WeatherCard weatherData={weatherData}/>
+      <WeatherCard weatherData={weatherData}/>
       <div className="bg-blue-200 flex flex-col items-center text-2xl m-4">
         <h1>9 Days forecast</h1>
         {nineDaysWeather.map((forecast, idx) => (
