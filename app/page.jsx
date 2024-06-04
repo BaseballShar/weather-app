@@ -51,7 +51,6 @@ export default function Home() {
 
   function formatDailyForecast(forecast) {
     const month = forecast.forecastDate.substr(4, 2);
-    /* const month = 3 */
     const day = forecast.forecastDate.substr(6, 2);
     const minTemp = forecast.forecastMintemp.value;
     const maxTemp = forecast.forecastMaxtemp.value;
@@ -68,7 +67,7 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-blue-50 h-full grid grid-cols-3">
+    <div className="bg-blue-50 grid grid-cols-3">
       <WeatherCard weatherData={weatherData}/>
       <WeatherCard weatherData={weatherData}/>
       <WeatherCard weatherData={weatherData}/>
