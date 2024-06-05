@@ -4,23 +4,18 @@ export default function ForecastList({ data }) {
   const forecasts = data.weatherForecast;
 
   function extractForecastData(forecast) {
-    const month = forecast.forecastDate.substr(4, 2);
-    const day = forecast.forecastDate.substr(6, 2);
-    const minTemp = forecast.forecastMintemp.value;
-    const maxTemp = forecast.forecastMaxtemp.value;
-    const minRH = forecast.forecastMinrh.value;
-    const maxRH = forecast.forecastMaxrh.value;
-    const iconId = forecast.ForecastIcon;
-
     const forecastData = {
-      month: month,
-      day: day,
-      minTemp: minTemp,
-      maxTemp: maxTemp,
-      minRH: minRH,
-      maxRH: maxRH,
-      iconId: iconId,
+      month: forecast.forecastDate.substr(4, 2),
+      day: forecast.forecastDate.substr(6, 2),
+      minTemp: forecast.forecastMintemp.value,
+      maxTemp: forecast.forecastMaxtemp.value,
+      minRH: forecast.forecastMinrh.value,
+      maxRH: forecast.forecastMaxrh.value,
+      iconId: forecast.ForecastIcon,
+      dayOfWeek: forecast.week.substr(0, 3),
+      summary: forecast.forecastWeather,
     };
+
     return forecastData;
   }
 
@@ -34,15 +29,18 @@ export default function ForecastList({ data }) {
             className="flex justify-around items-center border-t border-black py-2"
             key={idx}
           >
-            <div>
-              <p>
-                {forecastData.day}/{forecastData.month}
-              </p>
+            <div className="flex gap-8">
               <img
                 className="w-16"
                 src={getWeatherIconURL(forecastData.iconId)}
                 alt="Forecast icon"
               />
+              <div>
+                <p>
+                  {forecastData.day}/{forecastData.month}
+                </p>
+                <p>{forecastData.dayOfWeek}</p>
+              </div>
             </div>
             <div>
               <p>
