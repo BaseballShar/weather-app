@@ -36,7 +36,7 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-blue-50 grid grid-cols-3">
+    <div className="weather-page">
       <WeatherCard weatherData={weatherData} />
       <WeatherCard weatherData={weatherData} />
       <WeatherCard weatherData={weatherData} />

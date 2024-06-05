@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .weather-card {
+    @apply bg-blue-100 flex justify-center items-center text-xl m-4 p-4 rounded-3xl
+  }
+
+  .weather-page {
+    @apply bg-blue-50 grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2
+  }
+}

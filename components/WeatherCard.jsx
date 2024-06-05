@@ -7,7 +7,7 @@ export default function WeatherCard({ weatherData }) {
   const uvDesc = weatherData.uvindex === "" ? 0 : weatherData.uvindex.data[0].desc;
 
   return (
-    <div className="bg-blue-100 flex justify-center items-center text-xl m-4 p-4 rounded-3xl">
+    <div className="weather-card">
       <div>
         <p>Temperature: {temperature}°C</p>
         <p>Humidity: {humidity}%</p>
