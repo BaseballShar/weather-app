@@ -1,7 +1,7 @@
 "use client";
 
+import ForecastList from "@/components/ForecastList";
 import LoadingPanel from "@/components/LoadingPanel";
-import NineDaysForcast from "@/components/NineDaysForcast";
 import WeatherCard from "@/components/WeatherCard";
 import { useEffect, useState } from "react";
 
@@ -20,21 +20,19 @@ export default function Home() {
       let url = getAPIUrl("rhrread");
       let res = await fetch(url);
       let data = await res.json();
-      console.log(data);
       setWeatherData(data);
 
       url = getAPIUrl("fnd");
       res = await fetch(url);
       data = await res.json();
-      console.log(data);
-      setNineDaysWeather(data.weatherForcast);
+      setNineDaysWeather(data);
     }
 
     getWeatherData();
   }, []);
 
   if (!weatherData || !nineDaysWeather) {
-    return <LoadingPanel />;
+    return <LoadingPanel/>
   }
 
   return (
@@ -42,7 +40,7 @@ export default function Home() {
       <WeatherCard weatherData={weatherData} />
       <WeatherCard weatherData={weatherData} />
       <WeatherCard weatherData={weatherData} />
-      <NineDaysForcast weatherData={nineDaysWeather} />
+      <ForecastList data={nineDaysWeather}/>
     </div>
   );
 }

@@ -1,4 +1,6 @@
-export default function NineDaysForcast({weatherData}) {
+export default function ForecastList({data}) {
+  const forecasts = data.weatherForecast
+
   function formatDailyForecast(forecast) {
     const month = forecast.forecastDate.substr(4, 2);
     const day = forecast.forecastDate.substr(6, 2);
@@ -10,7 +12,7 @@ export default function NineDaysForcast({weatherData}) {
   return (
     <div className="bg-blue-200 flex flex-col items-center text-2xl m-4">
       <h1>9 Days forecast</h1>
-      {weatherData.map((forecast, idx) => (
+      {forecasts.map((forecast, idx) => (
         <p key={idx}>{formatDailyForecast(forecast)}</p>
       ))}
     </div>
