@@ -1,7 +1,8 @@
-import { getWeatherIconURL } from "@/app/util";
+import { getWeatherIconURL, weatherEmoji } from "@/app/util";
 
 export default function ForecastList({ data }) {
   const forecasts = data.weatherForecast;
+  const space = " ";
 
   function extractForecastData(forecast) {
     const forecastData = {
@@ -39,14 +40,16 @@ export default function ForecastList({ data }) {
                 <p>
                   {forecastData.day}/{forecastData.month}
                 </p>
-                <p>{forecastData.dayOfWeek}</p>
+                <p>({forecastData.dayOfWeek})</p>
               </div>
             </div>
             <div>
               <p>
+                {String.fromCodePoint(weatherEmoji.temperature)}{space}
                 {forecastData.minTemp} - {forecastData.maxTemp}°C
               </p>
               <p>
+                {String.fromCodePoint(weatherEmoji.humidity)}{space}
                 {forecastData.minRH} - {forecastData.maxRH}%
               </p>
             </div>

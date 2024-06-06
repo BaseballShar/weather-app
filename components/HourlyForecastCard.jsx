@@ -1,4 +1,4 @@
-import { getWeatherIconURL } from "@/app/util";
+import { getWeatherIconURL, weatherEmoji } from "@/app/util";
 import moment from "moment";
 
 export default function HourlyForecastCard({ data }) {
@@ -45,7 +45,7 @@ export default function HourlyForecastCard({ data }) {
   const hourlyForcasts = data.hourly.time.map((_, idx) => {
     const forcasts = {
       time: moment(data.hourly.time[idx]),
-      timeDisplay: moment(data.hourly.time[idx]).format('hh A'),
+      timeDisplay: moment(data.hourly.time[idx]).format("h A"),
       temp: Math.round(data.hourly.temperature_2m[idx]),
       rh: data.hourly.relative_humidity_2m[idx],
       precProb: data.hourly.precipitation_probability[idx],
@@ -56,32 +56,42 @@ export default function HourlyForecastCard({ data }) {
     return forcasts;
   });
 
-  const weatherEmoji = {
-    temperature: 127777,
-    humidity: 128167,
-    rain: 127783,
-  }
-
   /* const bihourlyForcasts = hourlyForcasts.filter((_, idx) => idx % 2 === 0); */
-  const next12HoursForcasts = hourlyForcasts.filter(forcast => forcast.time > moment()).slice(0, 12)
+  const next12HoursForcasts = hourlyForcasts
+    .filter((forcast) => forcast.time > moment())
+    .slice(0, 12);
 
   return (
     <div className="forecast-card">
       <div className="flex flex-col">
         <p className="text-center">Hourly Forcast</p>
         {next12HoursForcasts.map((forcast, idx) => (
-          <div key={idx} className="flex justify-around border-t border-black">
+          <div
+            key={idx}
+            className="flex justify-around items-center border-t border-black py-1"
+          >
             <div>
-              <img className="w-16" src={getWeatherIconURL(forcast.iconId)} alt="weather icon" />
+              <img
+                className="w-12"
+                src={getWeatherIconURL(forcast.iconId)}
+                alt="weather icon"
+              />
               <p>{forcast.timeDisplay}</p>
             </div>
             <div>
               <p>UV: {forcast.uv}</p>
-              <p>{String.fromCodePoint(weatherEmoji.rain)} {forcast.rain}mm</p>
+              <p>
+                {String.fromCodePoint(weatherEmoji.rain)} {forcast.rain}mm
+              </p>
             </div>
             <div>
-              <p>{String.fromCodePoint(weatherEmoji.temperature)} {forcast.temp}°C</p>
-              <p>{String.fromCodePoint(weatherEmoji.humidity)} {forcast.rh}%</p>
+              <p>
+                {String.fromCodePoint(weatherEmoji.temperature)} {forcast.temp}
+                °C
+              </p>
+              <p>
+                {String.fromCodePoint(weatherEmoji.humidity)} {forcast.rh}%
+              </p>
             </div>
           </div>
         ))}

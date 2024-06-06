@@ -4,7 +4,7 @@ export default function WeatherCard({ weatherData }) {
   const humidity = weatherData.humidity.data[0].value;
   const rainfall = weatherData.rainfall.data[7].max;
   const uvValue = weatherData.uvindex === "" ? 0 : weatherData.uvindex.data[0].value;
-  const uvDesc = weatherData.uvindex === "" ? "" : (weatherData.uvindex.data[0].desc);
+  const uvDesc = weatherData.uvindex === "" ? "" : `(${weatherData.uvindex.data[0].desc})`;
 
   return (
     <div className="weather-card">
