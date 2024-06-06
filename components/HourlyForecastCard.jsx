@@ -69,8 +69,8 @@ export default function HourlyForecastCard({ data }) {
     <div className="forecast-card">
       <div className="flex flex-col">
         <p className="text-center">Hourly Forcast</p>
-        {next12HoursForcasts.map((forcast) => (
-          <div className="flex justify-around border-t border-black">
+        {next12HoursForcasts.map((forcast, idx) => (
+          <div key={idx} className="flex justify-around border-t border-black">
             <div>
               <img className="w-16" src={getWeatherIconURL(forcast.iconId)} alt="weather icon" />
               <p>{forcast.timeDisplay}</p>
