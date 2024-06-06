@@ -1,6 +1,7 @@
 "use client";
 
 import ForecastList from "@/components/ForecastList";
+import HourlyForecastCard from "@/components/HourlyForecastCard";
 import LoadingPanel from "@/components/LoadingPanel";
 import MoonCard from "@/components/MoonCard";
 import SunCard from "@/components/SunCard";
@@ -12,6 +13,7 @@ export default function Home() {
   const [nineDaysWeather, setNineDaysWeather] = useState(null);
   const [moonData, setMoonData] = useState(null)
   const [sunData, setSunData] = useState(null)
+  const [meteoData, setMeteoData] = useState(null)
 
   function getAPIUrl(dataType, lang = "en") {
     const today = new Date()
@@ -36,6 +38,8 @@ export default function Home() {
     return `${baseURL}/${filename[dataType]}.php?dataType=${dataType}&lang=${lang}${extension[dataType]}`;
   }
 
+  const meteoAPI = "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code,surface_pressure,visibility,uv_index&timezone=auto&forecast_days=1"
+
   useEffect(() => {
     async function getWeatherData() {
       let url = getAPIUrl("rhrread");
@@ -57,12 +61,17 @@ export default function Home() {
       res = await fetch(url);
       data = await res.json();
       setSunData(data)
+
+      url = meteoAPI
+      res = await fetch(url);
+      data = await res.json();
+      setMeteoData(data)
     }
 
     getWeatherData();
   }, []);
 
-  if (!weatherData || !nineDaysWeather || !moonData || !sunData) {
+  if (!weatherData || !nineDaysWeather || !moonData || !sunData || !meteoData) {
     return <LoadingPanel />;
   }
 
@@ -72,6 +81,7 @@ export default function Home() {
       <MoonCard data={moonData}/>
       <SunCard data={sunData}/>
       <ForecastList data={nineDaysWeather} />
+      <HourlyForecastCard data={meteoData} />
     </div>
   );
 }

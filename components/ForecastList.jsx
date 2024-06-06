@@ -20,7 +20,7 @@ export default function ForecastList({ data }) {
   }
 
   return (
-    <div className="bg-blue-200 flex flex-col text-2xl m-4 rounded-3xl">
+    <div className="forecast-card">
       <h1 className="text-center">9 Days forecast</h1>
       {forecasts.map((forecast, idx) => {
         const forecastData = extractForecastData(forecast);
