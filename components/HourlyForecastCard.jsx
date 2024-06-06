@@ -1,13 +1,7 @@
 import { getWeatherIconURL } from "@/app/util";
+import moment from "moment";
 
 export default function HourlyForecastCard({ data }) {
-  /* Covert 24 hour system to 12 hour system */
-  function formatHour(hour) {
-    const suffix = hour < 12 ? "AM" : "PM";
-    const value = hour > 12 ? hour - 12 : hour;
-    return `${value} ${suffix}`;
-  }
-
   const toHKOWeatherCode = {
     day: {
       0: 50, // Clear sky
@@ -50,7 +44,8 @@ export default function HourlyForecastCard({ data }) {
   /* Convertforcast data into an array of weather data objects */
   const hourlyForcasts = data.hourly.time.map((_, idx) => {
     const forcasts = {
-      time: formatHour(idx),
+      time: moment(data.hourly.time[idx]),
+      timeDisplay: moment(data.hourly.time[idx]).format('DD/MM hA'),
       temp: Math.round(data.hourly.temperature_2m[idx]),
       rh: data.hourly.relative_humidity_2m[idx],
       precProb: data.hourly.precipitation_probability[idx],
@@ -61,17 +56,18 @@ export default function HourlyForecastCard({ data }) {
     return forcasts;
   });
 
-  const bihourlyForcasts = hourlyForcasts.filter((_, idx) => idx % 2 === 0);
+  /* const bihourlyForcasts = hourlyForcasts.filter((_, idx) => idx % 2 === 0); */
+  const next12HoursForcasts = hourlyForcasts.filter(forcast => forcast.time > moment()).slice(0, 12)
 
   return (
     <div className="forecast-card">
       <div className="flex flex-col">
         <p className="text-center">Hourly Forcast</p>
-        {bihourlyForcasts.map((forcast) => (
+        {next12HoursForcasts.map((forcast) => (
           <div className="flex justify-around border-t border-black">
             <div>
               <img className="w-16" src={getWeatherIconURL(forcast.iconId)} alt="weather icon" />
-              <p>{forcast.time}</p>
+              <p>{forcast.timeDisplay}</p>
               <p>UV: {forcast.uv}</p>
             </div>
             <div>

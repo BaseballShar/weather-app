@@ -38,7 +38,7 @@ export default function Home() {
     return `${baseURL}/${filename[dataType]}.php?dataType=${dataType}&lang=${lang}${extension[dataType]}`;
   }
 
-  const meteoAPI = "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code,surface_pressure,visibility,uv_index&timezone=auto&forecast_days=1"
+  const meteoAPI = "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code,surface_pressure,visibility,uv_index&timezone=auto&forecast_days=2"
 
   useEffect(() => {
     async function getWeatherData() {
