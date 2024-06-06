@@ -45,7 +45,7 @@ export default function HourlyForecastCard({ data }) {
   const hourlyForcasts = data.hourly.time.map((_, idx) => {
     const forcasts = {
       time: moment(data.hourly.time[idx]),
-      timeDisplay: moment(data.hourly.time[idx]).format('DD/MM hA'),
+      timeDisplay: moment(data.hourly.time[idx]).format('hh A'),
       temp: Math.round(data.hourly.temperature_2m[idx]),
       rh: data.hourly.relative_humidity_2m[idx],
       precProb: data.hourly.precipitation_probability[idx],
@@ -55,6 +55,12 @@ export default function HourlyForecastCard({ data }) {
     };
     return forcasts;
   });
+
+  const weatherEmoji = {
+    temperature: 127777,
+    humidity: 128167,
+    rain: 127783,
+  }
 
   /* const bihourlyForcasts = hourlyForcasts.filter((_, idx) => idx % 2 === 0); */
   const next12HoursForcasts = hourlyForcasts.filter(forcast => forcast.time > moment()).slice(0, 12)
@@ -68,15 +74,14 @@ export default function HourlyForecastCard({ data }) {
             <div>
               <img className="w-16" src={getWeatherIconURL(forcast.iconId)} alt="weather icon" />
               <p>{forcast.timeDisplay}</p>
+            </div>
+            <div>
               <p>UV: {forcast.uv}</p>
+              <p>{String.fromCodePoint(weatherEmoji.rain)} {forcast.rain}mm</p>
             </div>
             <div>
-              <p>T: {forcast.temp}°C</p>
-              <p>RH: {forcast.rh}%</p>
-            </div>
-            <div>
-              <p>{forcast.precProb}%</p>
-              <p>{forcast.rain}mm</p>
+              <p>{String.fromCodePoint(weatherEmoji.temperature)} {forcast.temp}°C</p>
+              <p>{String.fromCodePoint(weatherEmoji.humidity)} {forcast.rh}%</p>
             </div>
           </div>
         ))}
