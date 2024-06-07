@@ -9,15 +9,15 @@ import WeatherCard from "@/components/WeatherCard";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [weatherData, setWeatherData] = useState(null);
+  const [currentWeather, setCurrentWeather] = useState(null);
   const [nineDaysWeather, setNineDaysWeather] = useState(null);
   const [moonData, setMoonData] = useState(null);
   const [sunData, setSunData] = useState(null);
   const [meteoData, setMeteoData] = useState(null);
 
-  const datas = [weatherData, nineDaysWeather, moonData, sunData, meteoData];
+  const datas = [currentWeather, nineDaysWeather, moonData, sunData, meteoData];
   const apis = [
-    { dataType: "rhrread", setter: setWeatherData },
+    { dataType: "rhrread", setter: setCurrentWeather },
     { dataType: "fnd", setter: setNineDaysWeather },
     { dataType: "MRS", setter: setMoonData },
     { dataType: "SRS", setter: setSunData },
@@ -76,7 +76,7 @@ export default function Home() {
 
   return (
     <div className="weather-page">
-      <WeatherCard weatherData={weatherData} />
+      <WeatherCard data={currentWeather} />
       <MoonCard data={moonData} />
       <SunCard data={sunData} />
       <ForecastList data={nineDaysWeather} />
