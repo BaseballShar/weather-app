@@ -2,11 +2,17 @@
 
 import DailyForecastCard from "@/components/DailyForecastCard";
 import HourlyForecastCard from "@/components/HourlyForecastCard";
+import HumidityCard from "@/components/HumidityCard";
 import LoadingPanel from "@/components/LoadingPanel";
 import MoonCard from "@/components/MoonCard";
+import PressureCard from "@/components/PressureCard";
+import RainCard from "@/components/RainCard";
 import SunCard from "@/components/SunCard";
+import TemperatureCard from "@/components/TemperatureCard";
+import UVCard from "@/components/UVCard";
 import VisibilityCard from "@/components/VisibilityCard";
 import WeatherCard from "@/components/WeatherCard";
+import WindCard from "@/components/WindCard";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -27,7 +33,14 @@ export default function Home() {
 
   function getAPIUrl(dataType, lang = "en") {
     if (dataType === "meteo") {
-      return "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,showers,weather_code,cloud_cover,pressure_msl,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,relative_humidity_2m,rain,weather_code,uv_index,visibility&daily=temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=2";
+      const meteoBaseUrl =
+        "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747";
+      const currentParams =
+        "temperature_2m,relative_humidity_2m,dewpoint_2m,apparent_temperature,is_day,precipitation,precipitation_probability,weather_code,cloud_cover,pressure_msl,wind_speed_10m,wind_direction_10m,wind_gusts_10m,uv_index";
+      const hourlyParams =
+        "temperature_2m,relative_humidity_2m,rain,weather_code,uv_index,visibility";
+      const dailyParams = "temperature_2m_max,temperature_2m_min";
+      return `${meteoBaseUrl}&current=${currentParams}&hourly=${hourlyParams}&daily=${dailyParams}&timezone=auto&forecast_days=2`;
     }
 
     const today = new Date();
@@ -78,6 +91,12 @@ export default function Home() {
   return (
     <div className="weather-page">
       <WeatherCard data={currentWeather} />
+      <TemperatureCard data={meteoData} />
+      <HumidityCard data={meteoData} />
+      <RainCard data={meteoData} />
+      <WindCard data={meteoData} />
+      <UVCard data={meteoData} />
+      <PressureCard data={meteoData} />
       <VisibilityCard data={meteoData} />
       <MoonCard data={moonData} />
       <SunCard data={sunData} />
