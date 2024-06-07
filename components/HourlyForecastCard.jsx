@@ -62,39 +62,37 @@ export default function HourlyForecastCard({ data }) {
 
   return (
     <div className="forecast-card">
-      <div className="flex flex-col">
-        <p className="card-title">Hourly Forcast</p>
-        {next12HoursForcasts.map((forcast, idx) => (
-          <div
-            key={idx}
-            className="flex justify-around items-center border-t border-black py-1"
-          >
-            <div className="flex gap-8 items-center">
-              <img
-                className="w-16"
-                src={getWeatherIconURL(forcast.iconId)}
-                alt="weather icon"
-              />
-              <p>{forcast.timeDisplay}</p>
-            </div>
-            <div>
-              <p>UV: {forcast.uv}</p>
-              <p>
-                {String.fromCodePoint(weatherEmoji.rain)} {forcast.rain}mm
-              </p>
-            </div>
-            <div>
-              <p>
-                {String.fromCodePoint(weatherEmoji.temperature)} {forcast.temp}
-                °C
-              </p>
-              <p>
-                {String.fromCodePoint(weatherEmoji.humidity)} {forcast.rh}%
-              </p>
-            </div>
+      <p className="card-title">Hourly Forcast</p>
+      {next12HoursForcasts.map((forcast, idx) => (
+        <div
+          key={idx}
+          className="flex justify-around items-center border-t border-black py-1 h-full"
+        >
+          <div className="flex gap-8 items-center">
+            <img
+              className="w-16"
+              src={getWeatherIconURL(forcast.iconId)}
+              alt="weather icon"
+            />
+            <p>{forcast.timeDisplay}</p>
           </div>
-        ))}
-      </div>
+          <div>
+            <p>UV: {forcast.uv}</p>
+            <p>
+              {String.fromCodePoint(weatherEmoji.rain)} {forcast.rain}mm
+            </p>
+          </div>
+          <div>
+            <p>
+              {String.fromCodePoint(weatherEmoji.temperature)} {forcast.temp}
+              °C
+            </p>
+            <p>
+              {String.fromCodePoint(weatherEmoji.humidity)} {forcast.rh}%
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

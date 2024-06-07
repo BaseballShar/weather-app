@@ -20,13 +20,13 @@ export default function SunCard({data}) {
 
   return (
     <div className="weather-card">
-      <span className="emoji">
+      <span className="emoji mx-4">
         {String.fromCodePoint(getSunIcon(rise, set))}
       </span>
       <div>
-        <p>Sun rise: {rise}</p>
-        <p>Sun transit: {transit}</p>
-        <p>Sun set: {set}</p>
+        <p>Rise: {rise}</p>
+        <p>Transit: {transit}</p>
+        <p>Set: {set}</p>
       </div>
     </div>
   )

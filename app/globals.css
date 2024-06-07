@@ -28,11 +28,11 @@
   }
 
   .forecast-card {
-    @apply bg-blue-100 flex flex-col text-2xl m-4 rounded-3xl;
+    @apply bg-blue-100 flex flex-col text-2xl m-4 rounded-3xl xl:col-span-2 xl:row-span-5
   }
 
   .weather-page {
-    @apply bg-blue-50 grid xl:grid-cols-6 lg:grid-cols-3 md:grid-cols-2;
+    @apply bg-blue-50 font-mono h-dvh grid xl:grid-cols-6 lg:grid-cols-3 md:grid-cols-2;
   }
 
   .card-title {
@@ -48,6 +48,6 @@
   }
 
   .emoji {
-    @apply xl:text-8xl lg:text-6xl md:text-6xl
+    @apply xl:text-7xl lg:text-6xl md:text-6xl
   }
 }

@@ -7,15 +7,22 @@ export default function WeatherCard({ data }) {
   const uvDesc = data.uvindex === "" ? "" : `(${data.uvindex.data[0].desc})`;
 
   return (
-    <div className="weather-card text-lg">
-      <img className="w-20" src={weatherIconUrl} alt="weather icon" />
-      <div>
-        <p>Temperature: {temperature}°C</p>
-        <p>Humidity: {humidity}%</p>
-        <p>Rainfall: {rainfall}mm</p>
-        <p>
-          UV: {uvValue} {uvDesc}
-        </p>
+    <div className="weather-card text-lg flex-col">
+      <p className="card-title">Summary</p>
+      <div className="flex items-center">
+        <img
+          className="w-20 h-20 mx-4"
+          src={weatherIconUrl}
+          alt="weather icon"
+        />
+        <div>
+          <p>T: {temperature}°C</p>
+          <p>RH: {humidity}%</p>
+          <p>Rain: {rainfall}mm</p>
+          <p>
+            UV: {uvValue} {uvDesc}
+          </p>
+        </div>
       </div>
     </div>
   );

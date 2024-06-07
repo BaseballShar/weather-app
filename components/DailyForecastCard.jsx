@@ -27,7 +27,7 @@ export default function DailyForecastCard({ data }) {
         const forecastData = extractForecastData(forecast);
         return (
           <div
-            className="flex justify-around items-center border-t border-black py-2"
+            className="flex justify-around items-center border-t border-black py-2 h-full"
             key={idx}
           >
             <div className="flex gap-8">
