@@ -1,6 +1,6 @@
 "use client";
 
-import ForecastList from "@/components/ForecastList";
+import DailyForecastCard from "@/components/DailyForecastCard";
 import HourlyForecastCard from "@/components/HourlyForecastCard";
 import LoadingPanel from "@/components/LoadingPanel";
 import MoonCard from "@/components/MoonCard";
@@ -79,7 +79,7 @@ export default function Home() {
       <WeatherCard data={currentWeather} />
       <MoonCard data={moonData} />
       <SunCard data={sunData} />
-      <ForecastList data={nineDaysWeather} />
+      <DailyForecastCard data={nineDaysWeather} />
       <HourlyForecastCard data={meteoData} />
     </div>
   );

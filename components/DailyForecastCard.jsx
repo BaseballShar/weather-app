@@ -1,6 +1,6 @@
 import { getWeatherIconURL, weatherEmoji } from "@/app/util";
 
-export default function ForecastList({ data }) {
+export default function DailyForecastCard({ data }) {
   const forecasts = data.weatherForecast;
   const space = " ";
 
