@@ -7,11 +7,11 @@ export default function WeatherCard({ data }) {
   const uvDesc = data.uvindex === "" ? "" : `(${data.uvindex.data[0].desc})`;
 
   return (
-    <div className="weather-card text-lg flex-col">
+    <div className="summary-card">
       <p className="card-title">Summary</p>
-      <div className="flex items-center">
+      <div className="flex items-center justify-around">
         <img
-          className="w-20 h-20 mx-4"
+          className="w-20 h-20"
           src={weatherIconUrl}
           alt="weather icon"
         />

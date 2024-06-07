@@ -27,27 +27,31 @@
     @apply bg-blue-100 flex justify-around items-center text-xl m-4 p-4 rounded-3xl;
   }
 
+  .summary-card {
+    @apply bg-blue-100 flex m-4 p-4 rounded-3xl flex-col text-xl;
+  }
+
   .forecast-card {
-    @apply bg-blue-100 flex flex-col text-2xl m-4 rounded-3xl xl:col-span-2 xl:row-span-5
+    @apply bg-blue-100 flex flex-col text-2xl m-4 rounded-3xl xl:col-span-2 xl:row-span-5 md:col-span-1 sm:col-span-2;
   }
 
   .weather-page {
-    @apply bg-blue-50 font-mono h-dvh grid xl:grid-cols-6 lg:grid-cols-3 md:grid-cols-2;
+    @apply bg-blue-50 font-mono grid xl:h-dvh xl:grid-cols-6 sm:grid-cols-2;
   }
 
   .card-title {
-    @apply text-2xl font-bold text-center
+    @apply text-2xl font-bold text-center;
   }
 
   .card-content {
-    @apply text-xl
+    @apply text-xl;
   }
 
   .card-remark {
-    @apply text-lg
+    @apply text-lg;
   }
 
   .emoji {
-    @apply xl:text-7xl lg:text-6xl md:text-6xl
+    @apply xl:text-7xl lg:text-6xl md:text-6xl;
   }
 }
