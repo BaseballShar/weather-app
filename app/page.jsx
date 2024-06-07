@@ -5,6 +5,7 @@ import HourlyForecastCard from "@/components/HourlyForecastCard";
 import LoadingPanel from "@/components/LoadingPanel";
 import MoonCard from "@/components/MoonCard";
 import SunCard from "@/components/SunCard";
+import VisibilityCard from "@/components/VisibilityCard";
 import WeatherCard from "@/components/WeatherCard";
 import { useEffect, useState } from "react";
 
@@ -77,6 +78,7 @@ export default function Home() {
   return (
     <div className="weather-page">
       <WeatherCard data={currentWeather} />
+      <VisibilityCard data={meteoData} />
       <MoonCard data={moonData} />
       <SunCard data={sunData} />
       <DailyForecastCard data={nineDaysWeather} />

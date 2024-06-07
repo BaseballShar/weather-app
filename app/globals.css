@@ -2,16 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1,
+  h2,
+  h3 {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+}
+
 @layer components {
   .weather-card {
-    @apply bg-blue-100 flex justify-around items-center text-xl m-4 p-4 rounded-3xl
+    @apply bg-blue-100 flex justify-around items-center text-xl m-4 p-4 rounded-3xl;
   }
 
   .forecast-card {
-    @apply bg-blue-100 flex flex-col text-2xl m-4 rounded-3xl
+    @apply bg-blue-100 flex flex-col text-2xl m-4 rounded-3xl;
   }
 
   .weather-page {
-    @apply bg-blue-50 grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2
+    @apply bg-blue-50 grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2;
+  }
+
+  .card-title {
+    @apply text-2xl font-bold
+  }
+
+  .card-content {
+    @apply text-xl
+  }
+
+  .card-remark {
+    @apply text-lg
   }
 }
