@@ -7,7 +7,8 @@ export default function WeatherCard({ data }) {
   const uvDesc = data.uvindex === "" ? "" : `(${data.uvindex.data[0].desc})`;
 
   return (
-    <div className="weather-card">
+    <div className="weather-card text-lg">
+      <img className="w-20" src={weatherIconUrl} alt="weather icon" />
       <div>
         <p>Temperature: {temperature}°C</p>
         <p>Humidity: {humidity}%</p>
@@ -15,9 +16,6 @@ export default function WeatherCard({ data }) {
         <p>
           UV: {uvValue} {uvDesc}
         </p>
-      </div>
-      <div>
-        <img className="w-20" src={weatherIconUrl} alt="weather icon" />
       </div>
     </div>
   );
