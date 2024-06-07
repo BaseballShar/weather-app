@@ -89,7 +89,13 @@ export default function Home() {
   }
 
   return (
-    <div className="weather-page">
+    <div className="weather-page font-mono h-dvh">
+      <div className="col-span-2 row-span-5">
+        <HourlyForecastCard data={meteoData} />
+      </div>
+      <div className="col-span-2 row-span-5">
+        <DailyForecastCard data={nineDaysWeather} />
+      </div>
       <WeatherCard data={currentWeather} />
       <TemperatureCard data={meteoData} />
       <HumidityCard data={meteoData} />
@@ -100,8 +106,6 @@ export default function Home() {
       <VisibilityCard data={meteoData} />
       <MoonCard data={moonData} />
       <SunCard data={sunData} />
-      <DailyForecastCard data={nineDaysWeather} />
-      <HourlyForecastCard data={meteoData} />
     </div>
   );
 }

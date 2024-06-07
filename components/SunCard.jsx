@@ -20,7 +20,7 @@ export default function SunCard({data}) {
 
   return (
     <div className="weather-card">
-      <span className="text-8xl">
+      <span className="emoji">
         {String.fromCodePoint(getSunIcon(rise, set))}
       </span>
       <div>

@@ -69,9 +69,9 @@ export default function HourlyForecastCard({ data }) {
             key={idx}
             className="flex justify-around items-center border-t border-black py-1"
           >
-            <div>
+            <div className="flex gap-8 items-center">
               <img
-                className="w-12"
+                className="w-16"
                 src={getWeatherIconURL(forcast.iconId)}
                 alt="weather icon"
               />
