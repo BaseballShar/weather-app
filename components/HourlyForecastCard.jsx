@@ -48,7 +48,6 @@ export default function HourlyForecastCard({ data }) {
       timeDisplay: moment(data.hourly.time[idx]).format("h A"),
       temp: Math.round(data.hourly.temperature_2m[idx]),
       rh: data.hourly.relative_humidity_2m[idx],
-      precProb: data.hourly.precipitation_probability[idx],
       rain: data.hourly.rain[idx],
       uv: Math.round(data.hourly.uv_index[idx]),
       iconId: toHKOWeatherCode.day[parseInt(data.hourly.weather_code[idx])],
@@ -64,7 +63,7 @@ export default function HourlyForecastCard({ data }) {
   return (
     <div className="forecast-card">
       <div className="flex flex-col">
-        <p className="text-center">Hourly Forcast</p>
+        <p className="card-title">Hourly Forcast</p>
         {next12HoursForcasts.map((forcast, idx) => (
           <div
             key={idx}

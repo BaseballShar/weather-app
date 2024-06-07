@@ -27,7 +27,7 @@ export default function Home() {
 
   function getAPIUrl(dataType, lang = "en") {
     if (dataType === "meteo") {
-      return "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code,surface_pressure,visibility,uv_index&timezone=auto&forecast_days=2";
+      return "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,showers,weather_code,cloud_cover,pressure_msl,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,relative_humidity_2m,rain,weather_code,uv_index,visibility&daily=temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=2";
     }
 
     const today = new Date();

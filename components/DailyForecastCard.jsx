@@ -22,7 +22,7 @@ export default function DailyForecastCard({ data }) {
 
   return (
     <div className="forecast-card">
-      <h1 className="text-center">9 Days forecast</h1>
+      <p className="card-title">9 Days forecast</p>
       {forecasts.map((forecast, idx) => {
         const forecastData = extractForecastData(forecast);
         return (
