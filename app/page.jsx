@@ -11,13 +11,30 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [weatherData, setWeatherData] = useState(null);
   const [nineDaysWeather, setNineDaysWeather] = useState(null);
-  const [moonData, setMoonData] = useState(null)
-  const [sunData, setSunData] = useState(null)
-  const [meteoData, setMeteoData] = useState(null)
+  const [moonData, setMoonData] = useState(null);
+  const [sunData, setSunData] = useState(null);
+  const [meteoData, setMeteoData] = useState(null);
+
+  const datas = [weatherData, nineDaysWeather, moonData, sunData, meteoData];
+  const apis = [
+    { dataType: "rhrread", setter: setWeatherData },
+    { dataType: "fnd", setter: setNineDaysWeather },
+    { dataType: "MRS", setter: setMoonData },
+    { dataType: "SRS", setter: setSunData },
+    { dataType: "meteo", setter: setMeteoData },
+  ];
 
   function getAPIUrl(dataType, lang = "en") {
-    const today = new Date()
-    const [day, month, year] = [today.getDate(), today.getMonth() + 1, today.getFullYear()]
+    if (dataType === "meteo") {
+      return "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code,surface_pressure,visibility,uv_index&timezone=auto&forecast_days=2";
+    }
+
+    const today = new Date();
+    const [day, month, year] = [
+      today.getDate(),
+      today.getMonth() + 1,
+      today.getFullYear(),
+    ];
 
     const filename = {
       rhrread: "weather",
@@ -38,48 +55,30 @@ export default function Home() {
     return `${baseURL}/${filename[dataType]}.php?dataType=${dataType}&lang=${lang}${extension[dataType]}`;
   }
 
-  const meteoAPI = "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code,surface_pressure,visibility,uv_index&timezone=auto&forecast_days=2"
-
+  /* Fetch from every api, and set the json data to respective objects */
   useEffect(() => {
     async function getWeatherData() {
-      let url = getAPIUrl("rhrread");
-      let res = await fetch(url);
-      let data = await res.json();
-      setWeatherData(data);
-
-      url = getAPIUrl("fnd");
-      res = await fetch(url);
-      data = await res.json();
-      setNineDaysWeather(data);
-
-      url = getAPIUrl("MRS");
-      res = await fetch(url);
-      data = await res.json();
-      setMoonData(data)
-
-      url = getAPIUrl("SRS");
-      res = await fetch(url);
-      data = await res.json();
-      setSunData(data)
-
-      url = meteoAPI
-      res = await fetch(url);
-      data = await res.json();
-      setMeteoData(data)
+      apis.forEach(async (api) => {
+        let url = getAPIUrl(api.dataType);
+        let res = await fetch(url);
+        let data = await res.json();
+        api.setter(data);
+      });
     }
 
     getWeatherData();
   }, []);
 
-  if (!weatherData || !nineDaysWeather || !moonData || !sunData || !meteoData) {
+  /* If any data is null, render the loading panel */
+  if (datas.some((item) => item == null)) {
     return <LoadingPanel />;
   }
 
   return (
     <div className="weather-page">
       <WeatherCard weatherData={weatherData} />
-      <MoonCard data={moonData}/>
-      <SunCard data={sunData}/>
+      <MoonCard data={moonData} />
+      <SunCard data={sunData} />
       <ForecastList data={nineDaysWeather} />
       <HourlyForecastCard data={meteoData} />
     </div>
