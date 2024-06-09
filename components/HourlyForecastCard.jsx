@@ -41,9 +41,9 @@ export default function HourlyForecastCard({ data }) {
     },
   };
 
-  /* Convertforcast data into an array of weather data objects */
-  const hourlyForcasts = data.hourly.time.map((_, idx) => {
-    const forcasts = {
+  /* Convert forecast data into an array of weather data objects */
+  const hourlyForecasts = data.hourly.time.map((_, idx) => {
+    const forecasts = {
       time: moment(data.hourly.time[idx]),
       timeDisplay: moment(data.hourly.time[idx]).format("h A"),
       temp: Math.round(data.hourly.temperature_2m[idx]),
@@ -52,43 +52,43 @@ export default function HourlyForecastCard({ data }) {
       uv: Math.round(data.hourly.uv_index[idx]),
       iconId: toHKOWeatherCode.day[parseInt(data.hourly.weather_code[idx])],
     };
-    return forcasts;
+    return forecasts;
   });
 
-  /* const bihourlyForcasts = hourlyForcasts.filter((_, idx) => idx % 2 === 0); */
-  const next12HoursForcasts = hourlyForcasts
-    .filter((forcast) => forcast.time > moment())
+  /* const bihourlyForecasts = hourlyForecasts.filter((_, idx) => idx % 2 === 0); */
+  const next12HoursForecasts = hourlyForecasts
+    .filter((forecast) => forecast.time > moment())
     .slice(0, 12);
 
   return (
     <div className="forecast-card">
-      <p className="forecast-title">Hourly Forcast</p>
-      {next12HoursForcasts.map((forcast, idx) => (
+      <p className="forecast-title">Hourly forecast</p>
+      {next12HoursForecasts.map((forecast, idx) => (
         <div
           key={idx}
-          className="forcast-item"
+          className="forecast-item"
         >
           <div className="flex gap-8 items-center">
             <img
               className="w-16"
-              src={getWeatherIconURL(forcast.iconId)}
+              src={getWeatherIconURL(forecast.iconId)}
               alt="weather icon"
             />
-            <p>{forcast.timeDisplay}</p>
+            <p>{forecast.timeDisplay}</p>
           </div>
           <div>
-            <p>UV: {forcast.uv}</p>
+            <p>UV: {forecast.uv}</p>
             <p>
-              {String.fromCodePoint(weatherEmoji.rain)} {forcast.rain}mm
+              {String.fromCodePoint(weatherEmoji.rain)} {forecast.rain}mm
             </p>
           </div>
           <div>
             <p>
-              {String.fromCodePoint(weatherEmoji.temperature)} {forcast.temp}
+              {String.fromCodePoint(weatherEmoji.temperature)} {forecast.temp}
               °C
             </p>
             <p>
-              {String.fromCodePoint(weatherEmoji.humidity)} {forcast.rh}%
+              {String.fromCodePoint(weatherEmoji.humidity)} {forecast.rh}%
             </p>
           </div>
         </div>

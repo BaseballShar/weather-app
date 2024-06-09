@@ -28,7 +28,7 @@ export default function DailyForecastCard({ data }) {
         return (
           <div
             key={idx}
-            className="forcast-item"
+            className="forecast-item"
           >
             <div className="flex gap-8">
               <img
