@@ -67,6 +67,14 @@
     @apply flex justify-around items-center border-t border-black py-1 h-full
   }
 
+  .forecast-container {
+    @apply border-t border-black py-1 h-full
+  }
+
+  .forecast-content {
+    @apply flex justify-around items-center
+  }
+
   .emoji {
     @apply text-7xl
   }

@@ -1,6 +1,11 @@
+"use client";
 import { getWeatherIconURL, weatherEmoji } from "@/app/util";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useState } from "react";
 
 export default function DailyForecastCard({ data }) {
+  const [selected, setSelected] = useState(null);
+
   const forecasts = data.weatherForecast;
   const space = " ";
 
@@ -20,6 +25,14 @@ export default function DailyForecastCard({ data }) {
     return forecastData;
   }
 
+  function handleSelected(idx) {
+    if (selected === idx) {
+      setSelected(null);
+    } else {
+      setSelected(idx);
+    }
+  }
+
   return (
     <div className="forecast-card">
       <p className="forecast-title">9 Days forecast</p>
@@ -27,32 +40,41 @@ export default function DailyForecastCard({ data }) {
         const forecastData = extractForecastData(forecast);
         return (
           <div
+            className="forecast-container hover:bg-blue-200"
             key={idx}
-            className="forecast-item"
+            onClick={() => handleSelected(idx)}
           >
-            <div className="flex gap-8">
-              <img
-                className="w-16"
-                src={getWeatherIconURL(forecastData.iconId)}
-                alt="Forecast icon"
-              />
+            <div className="forecast-content">
+              <div className="flex gap-8 items-center">
+                <ExpandMoreIcon />
+                <img
+                  className="w-16"
+                  src={getWeatherIconURL(forecastData.iconId)}
+                  alt="Forecast icon"
+                />
+                <div>
+                  <p>
+                    {forecastData.day}/{forecastData.month}
+                  </p>
+                  <p>({forecastData.dayOfWeek})</p>
+                </div>
+              </div>
               <div>
                 <p>
-                  {forecastData.day}/{forecastData.month}
+                  {String.fromCodePoint(weatherEmoji.temperature)}
+                  {space}
+                  {forecastData.minTemp} - {forecastData.maxTemp}°C
                 </p>
-                <p>({forecastData.dayOfWeek})</p>
+                <p>
+                  {String.fromCodePoint(weatherEmoji.humidity)}
+                  {space}
+                  {forecastData.minRH} - {forecastData.maxRH}%
+                </p>
               </div>
             </div>
-            <div>
-              <p>
-                {String.fromCodePoint(weatherEmoji.temperature)}{space}
-                {forecastData.minTemp} - {forecastData.maxTemp}°C
-              </p>
-              <p>
-                {String.fromCodePoint(weatherEmoji.humidity)}{space}
-                {forecastData.minRH} - {forecastData.maxRH}%
-              </p>
-            </div>
+            {selected === idx ? (
+              <p className="text-center px-2 pt-1">{forecastData.summary}</p>
+            ) : null}
           </div>
         );
       })}

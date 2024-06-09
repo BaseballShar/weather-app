@@ -1,5 +1,4 @@
 "use client";
-
 import DailyForecastCard from "@/components/DailyForecastCard";
 import HourlyForecastCard from "@/components/HourlyForecastCard";
 import HumidityCard from "@/components/HumidityCard";
