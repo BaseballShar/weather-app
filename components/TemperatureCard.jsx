@@ -6,7 +6,7 @@ export default function TemperatureCard({ data }) {
   const apparentTemp = data.current.apparent_temperature;
 
   return (
-    <div className="weather-card flex-col">
+    <div className="weather-card align-col">
       <p className="card-title">Temperature</p>
       <p className="card-content">
         {currentTemp}

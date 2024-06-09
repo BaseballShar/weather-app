@@ -4,7 +4,7 @@ export default function HumidityCard({ data }) {
   const humidity = data.current.relative_humidity_2m;
   const dewpoint = data.current.dewpoint_2m;
   return (
-    <div className="weather-card flex-col">
+    <div className="weather-card align-col">
       <p className="card-title">Humidity</p>
       <p className="card-content">{humidity}%</p>
       <p className="card-remark">

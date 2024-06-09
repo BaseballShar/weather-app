@@ -38,11 +38,11 @@ export default function MoonCard({ data }) {
   }
 
   return (
-    <div className="weather-card">
+    <div className="weather-card align-row">
       <span className="emoji mx-4">
         {String.fromCodePoint(moonIcon[computeMoonPhase(rise)])}
       </span>
-      <div>
+      <div className="card-remark">
         <p>Rise: {rise}</p>
         <p>Transit: {transit}</p>
         <p>Set: {set}</p>

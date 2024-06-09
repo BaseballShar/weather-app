@@ -51,7 +51,15 @@
     @apply text-lg;
   }
 
+  .forecast-title {
+    @apply text-2xl font-bold text-center py-1;
+  }
+
+  .forcast-item {
+    @apply flex justify-around items-center border-t border-black py-1 h-full
+  }
+
   .emoji {
-    @apply xl:text-7xl lg:text-6xl md:text-6xl;
+    @apply text-7xl
   }
 }

@@ -21,7 +21,7 @@ export default function VisibilityCard({ data }) {
   const visKm = Math.round(visMeter / 1000);
 
   return (
-    <div className="weather-card flex-col">
+    <div className="weather-card align-col">
       <p className="card-title">Visibility</p>
       <p className="card-content">{visKm} km</p>
       <p className="card-remark">{getVisCondition(visKm)}</p>

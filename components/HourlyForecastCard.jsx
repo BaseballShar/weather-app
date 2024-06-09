@@ -62,11 +62,11 @@ export default function HourlyForecastCard({ data }) {
 
   return (
     <div className="forecast-card">
-      <p className="card-title">Hourly Forcast</p>
+      <p className="forecast-title">Hourly Forcast</p>
       {next12HoursForcasts.map((forcast, idx) => (
         <div
           key={idx}
-          className="flex justify-around items-center border-t border-black py-1 h-full"
+          className="forcast-item"
         >
           <div className="flex gap-8 items-center">
             <img

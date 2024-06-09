@@ -22,13 +22,13 @@ export default function DailyForecastCard({ data }) {
 
   return (
     <div className="forecast-card">
-      <p className="card-title">9 Days forecast</p>
+      <p className="forecast-title">9 Days forecast</p>
       {forecasts.map((forecast, idx) => {
         const forecastData = extractForecastData(forecast);
         return (
           <div
-            className="flex justify-around items-center border-t border-black py-2 h-full"
             key={idx}
+            className="forcast-item"
           >
             <div className="flex gap-8">
               <img
