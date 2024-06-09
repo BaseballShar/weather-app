@@ -24,7 +24,15 @@
 
 @layer components {
   .weather-card {
-    @apply bg-blue-100 flex justify-around items-center text-xl m-4 p-4 rounded-3xl;
+    @apply bg-blue-100 rounded-3xl m-4 p-4;
+  }
+
+  .align-col {
+    @apply flex flex-col justify-around items-center
+  }
+
+  .align-row {
+    @apply flex flex-row justify-around items-center
   }
 
   .summary-card {
