@@ -35,9 +35,9 @@ export default function Home() {
       const meteoBaseUrl =
         "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747";
       const currentParams =
-        "temperature_2m,relative_humidity_2m,dewpoint_2m,apparent_temperature,is_day,precipitation,precipitation_probability,weather_code,cloud_cover,pressure_msl,wind_speed_10m,wind_direction_10m,wind_gusts_10m,uv_index";
+        "temperature_2m,relative_humidity_2m,dewpoint_2m,apparent_temperature,precipitation,precipitation_probability,weather_code,cloud_cover,pressure_msl,wind_speed_10m,wind_direction_10m,wind_gusts_10m,uv_index";
       const hourlyParams =
-        "temperature_2m,relative_humidity_2m,rain,weather_code,uv_index,visibility";
+        "temperature_2m,relative_humidity_2m,rain,weather_code,uv_index,visibility,is_day";
       const dailyParams = "temperature_2m_max,temperature_2m_min";
       return `${meteoBaseUrl}&current=${currentParams}&hourly=${hourlyParams}&daily=${dailyParams}&timezone=auto&forecast_days=2`;
     }

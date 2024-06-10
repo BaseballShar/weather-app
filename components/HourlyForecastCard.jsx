@@ -50,7 +50,10 @@ export default function HourlyForecastCard({ data }) {
       rh: data.hourly.relative_humidity_2m[idx],
       rain: data.hourly.rain[idx],
       uv: Math.round(data.hourly.uv_index[idx]),
-      iconId: toHKOWeatherCode.day[parseInt(data.hourly.weather_code[idx])],
+      dayIconId: toHKOWeatherCode.day[parseInt(data.hourly.weather_code[idx])],
+      nightIconId:
+        toHKOWeatherCode.night[parseInt(data.hourly.weather_code[idx])],
+      isDay: data.hourly.is_day[idx],
     };
     return forecasts;
   });
@@ -64,14 +67,15 @@ export default function HourlyForecastCard({ data }) {
     <div className="forecast-card">
       <p className="forecast-title">Hourly forecast</p>
       {next12HoursForecasts.map((forecast, idx) => (
-        <div
-          key={idx}
-          className="forecast-item"
-        >
+        <div key={idx} className="forecast-item">
           <div className="flex gap-8 items-center">
             <img
               className="w-16"
-              src={getWeatherIconURL(forecast.iconId)}
+              src={
+                forecast.isDay
+                  ? getWeatherIconURL(forecast.dayIconId)
+                  : getWeatherIconURL(forecast.nightIconId)
+              }
               alt="weather icon"
             />
             <p>{forecast.timeDisplay}</p>
