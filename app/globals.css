@@ -78,4 +78,12 @@
   .emoji {
     @apply text-7xl
   }
+
+  .header-icon {
+    @apply text-4xl hover:text-blue-400
+  }
+
+  .footer-link {
+    @apply italic hover:text-blue-400
+  }
 }
