@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
           <a href="https://baseballshar.github.io">
             <FaHome className="header-icon" />
           </a>
-          <p className="font-mono text-xl">Baseball's Weather panel</p>
+          <p className="font-mono text-xl">Baseball&#39;s Weather panel</p>
           <div className="flex gap-4">
             <a href="https://github.com/BaseballShar/weather-app">
               <FaGithub className="header-icon" />
