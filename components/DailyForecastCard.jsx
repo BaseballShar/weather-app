@@ -45,10 +45,10 @@ export default function DailyForecastCard({ data }) {
             onClick={() => handleSelected(idx)}
           >
             <div className="forecast-content">
-              <div className="flex gap-8 items-center">
+              <div className="flex gap-4 sm:gap-8 items-center">
                 <ExpandMoreIcon />
                 <img
-                  className="w-16"
+                  className="size-12 sm:size-16"
                   src={getWeatherIconURL(forecastData.iconId)}
                   alt="Forecast icon"
                 />
