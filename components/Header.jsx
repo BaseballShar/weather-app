@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className="bg-blue-200 px-8 py-2 gap-4">
       {/* Render title as a separate line on small devices */}
-      <p className="font-mono text-xl text-center sm:hidden">
+      <p className="font-mono text-xl text-center pb-2 sm:hidden">
         Baseball&#39;s Weather panel
       </p>
       <div className="flex justify-between">

@@ -68,7 +68,7 @@ export default function HourlyForecastCard({ data }) {
       <p className="forecast-title">Hourly forecast</p>
       {next12HoursForecasts.map((forecast, idx) => (
         <div key={idx} className="forecast-item">
-          <div className="flex gap-8 items-center">
+          <div className="flex gap-4 xl:gap-8 items-center">
             <img
               className="w-16"
               src={
