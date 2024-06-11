@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="flex justify-between items-center bg-blue-200 px-8 py-2">
+        <header className="flex justify-between items-center bg-blue-200 px-8 py-2 gap-4">
           <a href="https://baseballshar.github.io">
             <FaHome className="header-icon" />
           </a>
