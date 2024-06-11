@@ -5,7 +5,7 @@ export default function Header() {
     <header className="bg-blue-200 px-8 py-2 gap-4">
       {/* Render title as a separate line on small devices */}
       <p className="font-mono text-xl text-center pb-2 sm:hidden">
-        Baseball&#39;s Weather panel
+        Baseball&#39;s Weather Panel
       </p>
       <div className="flex justify-between">
         <a href="https://baseballshar.github.io">
@@ -13,7 +13,7 @@ export default function Header() {
         </a>
         {/* Render title inline on large devices */}
         <p className="font-mono text-xl hidden sm:block">
-          Baseball&#39;s Weather panel
+          Baseball&#39;s Weather Panel
         </p>
         <div className="flex gap-4">
           <a href="https://github.com/BaseballShar/weather-app">

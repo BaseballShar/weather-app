@@ -40,12 +40,12 @@ export default function DailyForecastCard({ data }) {
         const forecastData = extractForecastData(forecast);
         return (
           <div
-            className="forecast-container hover:bg-blue-200"
+            className="forecast-container hover:bg-blue-200 hover:cursor-pointer"
             key={idx}
             onClick={() => handleSelected(idx)}
           >
-            <div className="forecast-content">
-              <div className="flex gap-4 sm:gap-8 items-center">
+            <div className="forecast-content bg-red-100">
+              <div className="flex gap-4 xl:gap-8 items-center">
                 <ExpandMoreIcon />
                 <img
                   className="size-12 sm:size-16"
