@@ -44,7 +44,7 @@
   }
 
   .weather-page {
-    @apply bg-blue-50 font-mono grid xl:h-dvh xl:grid-cols-6 sm:grid-cols-2;
+    @apply bg-blue-50 font-mono grid xl:grid-cols-6 sm:grid-cols-2;
   }
 
   .card-title {
