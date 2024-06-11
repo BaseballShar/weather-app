@@ -1,10 +1,17 @@
-export default function WeatherCard({ data }) {
+export default function WeatherCard({ data , meteoData}) {
   const weatherIconUrl = `https://www.weather.gov.hk/images/HKOWxIconOutline/pic${data.icon[0]}.png`;
-  const temperature = data.temperature.data[2].value;
-  const humidity = data.humidity.data[0].value;
-  const rainfall = data.rainfall.data[7].max;
-  const uvValue = data.uvindex === "" ? 0 : data.uvindex.data[0].value;
+  /* HKO data */
+  /* const temperature = data.temperature.data[2].value; */
+  /* const humidity = data.humidity.data[0].value; */
+  /* const rainfall = data.rainfall.data[7].max; */
+  /* const uvValue = data.uvindex === "" ? 0 : data.uvindex.data[0].value; */
   const uvDesc = data.uvindex === "" ? "" : `(${data.uvindex.data[0].desc})`;
+
+  /* Meteo data */
+  const temperature = Math.round(meteoData.current.temperature_2m)
+  const humidity = Math.round(meteoData.current.relative_humidity_2m)
+  const rainfall = Math.round(meteoData.current.precipitation)
+  const uvValue = Math.round(meteoData.current.uv_index)
 
   return (
     <div className="weather-card">
@@ -18,7 +25,7 @@ export default function WeatherCard({ data }) {
         <div className="card-remark">
           <p>T: {temperature}°C</p>
           <p>RH: {humidity}%</p>
-          <p>Rain: {rainfall}mm</p>
+          <p>Rain: {rainfall} mm</p>
           <p>
             UV: {uvValue} {uvDesc}
           </p>

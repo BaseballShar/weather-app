@@ -91,7 +91,7 @@ export default function Home() {
     <div className="weather-page">
       <HourlyForecastCard data={meteoData} />
       <DailyForecastCard data={nineDaysWeather} />
-      <WeatherCard data={currentWeather} />
+      <WeatherCard data={currentWeather} meteoData={meteoData} />
       <TemperatureCard data={meteoData} />
       <HumidityCard data={meteoData} />
       <RainCard data={meteoData} />

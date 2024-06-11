@@ -4,8 +4,8 @@ export default function WindCard({ data }) {
   return (
     <div className="weather-card align-col">
       <p className="card-title">Wind</p>
-      <p className="card-content">Wind speed: {windSpeed} km/h</p>
-      <p className="card-content">Wind direction: {windDirection}</p>
+      <p className="card-content">Speed: {windSpeed} km/h</p>
+      <p className="card-content">Direction: {windDirection}</p>
     </div>
   );
 }
