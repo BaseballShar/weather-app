@@ -20,6 +20,7 @@ export default function HourlyForecastCard({ data }) {
       81: 63, // Moderate shower
       82: 64, // Heavy shower
       95: 65, // Thunderstorm
+      96: 65, // Thunderstorm with hail
     },
     night: {
       0: 73, // Clear sky
@@ -38,6 +39,7 @@ export default function HourlyForecastCard({ data }) {
       81: 63, // Moderate shower
       82: 64, // Heavy shower
       95: 65, // Thunderstorm
+      96: 65, // Thunderstorm with hail
     },
   };
 
