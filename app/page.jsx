@@ -23,7 +23,11 @@ export default function Home() {
   const [meteoData, setMeteoData] = useState(null);
 
   /* Geolocation reactive states */
-  const [userLocation, setUserLocation] = useState(null);
+  /* Uses generic Hong Kong location as default */
+  const [userLocation, setUserLocation] = useState({
+    latitude: 22.24,
+    longitude: 114.15,
+  });
 
   const datas = [
     currentWeather,
@@ -43,8 +47,7 @@ export default function Home() {
 
   function getAPIUrl(dataType, lang = "en") {
     if (dataType === "meteo") {
-      const meteoBaseUrl =
-        "https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747";
+      const meteoBaseUrl = `https://api.open-meteo.com/v1/forecast?latitude=${userLocation.latitude}&longitude=${userLocation.longitude}`;
       const currentParams =
         "temperature_2m,relative_humidity_2m,dewpoint_2m,apparent_temperature,precipitation,precipitation_probability,weather_code,cloud_cover,pressure_msl,wind_speed_10m,wind_direction_10m,wind_gusts_10m,uv_index";
       const hourlyParams =
@@ -82,10 +85,10 @@ export default function Home() {
   /* Get user geolocation */
   function getLocation() {
     /* Use Hong Kong location as fallback */
-    const defaultLocation = { latitude: 22.24, longitude: 114.15 }
     if (!navigator.geolocation) {
-      setUserLocation(defaultLocation)
-      alert("Geolocation is not supported by this browser.");
+      alert(
+        "Geolocation is not supported by this browser. Using Hong Kong as default location.",
+      );
       return;
     }
 
@@ -96,16 +99,20 @@ export default function Home() {
         const longitude = position.coords.longitude;
         setUserLocation({ latitude: latitude, longitude: longitude });
       },
-      (error) => {
+      (_) => {
         alert(
           "Geolocation request denied. Using Hong Kong as default location.",
         );
-        setUserLocation(defaultLocation);
       },
     );
   }
 
-  /* Fetch from every api, and set the json data to respective objects */
+  /* Fetch user geolocation upon rendering */
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  /* Fetch from every api upon userLocation update, and set the json data to respective objects */
   useEffect(() => {
     async function getWeatherData() {
       apis.forEach(async (api) => {
@@ -117,8 +124,7 @@ export default function Home() {
     }
 
     getWeatherData();
-    getLocation();
-  }, []);
+  }, [userLocation]);
 
   /* If any data is null, render the loading panel */
   if (datas.some((item) => item == null)) {
