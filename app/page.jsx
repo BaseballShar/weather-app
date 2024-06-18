@@ -15,13 +15,24 @@ import WindCard from "@/components/WindCard";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  /* Weather reactive states */
   const [currentWeather, setCurrentWeather] = useState(null);
   const [nineDaysWeather, setNineDaysWeather] = useState(null);
   const [moonData, setMoonData] = useState(null);
   const [sunData, setSunData] = useState(null);
   const [meteoData, setMeteoData] = useState(null);
 
-  const datas = [currentWeather, nineDaysWeather, moonData, sunData, meteoData];
+  /* Geolocation reactive states */
+  const [userLocation, setUserLocation] = useState(null);
+
+  const datas = [
+    currentWeather,
+    nineDaysWeather,
+    moonData,
+    sunData,
+    meteoData,
+    userLocation,
+  ];
   const apis = [
     { dataType: "rhrread", setter: setCurrentWeather },
     { dataType: "fnd", setter: setNineDaysWeather },
@@ -68,6 +79,32 @@ export default function Home() {
     return `${baseURL}/${filename[dataType]}.php?dataType=${dataType}&lang=${lang}${extension[dataType]}`;
   }
 
+  /* Get user geolocation */
+  function getLocation() {
+    /* Use Hong Kong location as fallback */
+    const defaultLocation = { latitude: 22.24, longitude: 114.15 }
+    if (!navigator.geolocation) {
+      setUserLocation(defaultLocation)
+      alert("Geolocation is not supported by this browser.");
+      return;
+    }
+
+    /* Run this only if geolocation API is supported */
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        setUserLocation({ latitude: latitude, longitude: longitude });
+      },
+      (error) => {
+        alert(
+          "Geolocation request denied. Using Hong Kong as default location.",
+        );
+        setUserLocation(defaultLocation);
+      },
+    );
+  }
+
   /* Fetch from every api, and set the json data to respective objects */
   useEffect(() => {
     async function getWeatherData() {
@@ -80,6 +117,7 @@ export default function Home() {
     }
 
     getWeatherData();
+    getLocation();
   }, []);
 
   /* If any data is null, render the loading panel */
