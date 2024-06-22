@@ -1,4 +1,6 @@
-export default function SunCard({data}) {
+import { translation } from "@/app/translation"
+
+export default function SunCard({data, lang}) {
   const rise = data.data[0][1]
   const transit = data.data[0][2]
   const set = data.data[0][3]
@@ -24,9 +26,9 @@ export default function SunCard({data}) {
         {String.fromCodePoint(getSunIcon(rise, set))}
       </span>
       <div className="card-remark">
-        <p>Rise: {rise}</p>
-        <p>Transit: {transit}</p>
-        <p>Set: {set}</p>
+        <p>{translation.sunrise[lang]}: {rise}</p>
+        <p>{translation.transit[lang]}: {transit}</p>
+        <p>{translation.sunset[lang]}: {set}</p>
       </div>
     </div>
   )

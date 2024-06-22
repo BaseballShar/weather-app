@@ -1,4 +1,6 @@
-export default function MoonCard({ data }) {
+import { translation } from "@/app/translation";
+
+export default function MoonCard({ data, lang }) {
   const rise = data.data[0][1];
   const transit = data.data[0][2];
   const set = data.data[0][3];
@@ -17,23 +19,23 @@ export default function MoonCard({ data }) {
 
   function computeMoonPhase(rise) {
     if (rise < "01:30") {
-      return "thirdQuarter"
+      return "thirdQuarter";
     } else if (rise < "04:30") {
-      return "waningCrescent"
+      return "waningCrescent";
     } else if (rise < "07:30") {
-      return "new"
+      return "new";
     } else if (rise < "10:30") {
-      return "waxingCrescent"
+      return "waxingCrescent";
     } else if (rise < "13:30") {
-      return "firstQuarter"
+      return "firstQuarter";
     } else if (rise < "16:30") {
-      return "waxingGibbous"
+      return "waxingGibbous";
     } else if (rise < "19:30") {
-      return "full"
-    } else if (rise < "22:30"){
-      return "waningGibbous"
+      return "full";
+    } else if (rise < "22:30") {
+      return "waningGibbous";
     } else {
-      return "thirdQuarter"
+      return "thirdQuarter";
     }
   }
 
@@ -43,9 +45,15 @@ export default function MoonCard({ data }) {
         {String.fromCodePoint(moonIcon[computeMoonPhase(rise)])}
       </span>
       <div className="card-remark">
-        <p>Rise: {rise}</p>
-        <p>Transit: {transit}</p>
-        <p>Set: {set}</p>
+        <p>
+          {translation.moonrise[lang]}: {rise}
+        </p>
+        <p>
+          {translation.transit[lang]}: {transit}
+        </p>
+        <p>
+          {translation.moonset[lang]}: {set}
+        </p>
       </div>
     </div>
   );

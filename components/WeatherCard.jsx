@@ -1,4 +1,6 @@
-export default function WeatherCard({ data, meteoData, locationData }) {
+import { translation } from "@/app/translation";
+
+export default function WeatherCard({ data, meteoData, locationData, lang }) {
   const weatherIconUrl = `https://www.weather.gov.hk/images/HKOWxIconOutline/pic${data.icon[0]}.png`;
   /* HKO data */
   /* const temperature = data.temperature.data[2].value; */
@@ -22,11 +24,11 @@ export default function WeatherCard({ data, meteoData, locationData }) {
       <div className="align-row mt-2">
         <img className="w-20 h-20" src={weatherIconUrl} alt="weather icon" />
         <div className="card-remark">
-          <p>T: {temperature}°C</p>
-          <p>RH: {humidity}%</p>
-          <p>Rain: {rainfall} mm</p>
+          <p>{translation.t[lang]}: {temperature}°C</p>
+          <p>{translation.rh[lang]}: {humidity}%</p>
+          <p>{translation.rain[lang]}: {rainfall} mm</p>
           <p>
-            UV: {uvValue} {uvDesc}
+            {translation.uv[lang]}: {uvValue} {uvDesc}
           </p>
         </div>
       </div>

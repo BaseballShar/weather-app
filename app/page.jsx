@@ -31,7 +31,7 @@ export default function Home() {
   });
   const [userLocation, setUserLocation] = useState(null);
 
-  const [language, setLanguage] = useState("en")
+  const [language, setLanguage] = useState("en");
 
   const datas = [
     currentWeather,
@@ -143,24 +143,25 @@ export default function Home() {
 
   return (
     <>
-      <Header language={language} setLanguage={setLanguage}/>
+      <Header language={language} setLanguage={setLanguage} />
       <div className="weather-page">
-        <HourlyForecastCard data={meteoData} />
-        <DailyForecastCard data={nineDaysWeather} />
+        <HourlyForecastCard data={meteoData} lang={language} />
+        <DailyForecastCard data={nineDaysWeather} lang={language} />
         <WeatherCard
           data={currentWeather}
           meteoData={meteoData}
           locationData={userLocation}
+          lang={language}
         />
         <TemperatureCard data={meteoData} lang={language} />
-        <HumidityCard data={meteoData} />
-        <RainCard data={meteoData} />
-        <WindCard data={meteoData} />
-        <UVCard data={meteoData} />
-        <PressureCard data={meteoData} />
-        <VisibilityCard data={meteoData} />
-        <MoonCard data={moonData} />
-        <SunCard data={sunData} />
+        <HumidityCard data={meteoData} lang={language} />
+        <RainCard data={meteoData} lang={language} />
+        <WindCard data={meteoData} lang={language} />
+        <UVCard data={meteoData} lang={language} />
+        <PressureCard data={meteoData} lang={language} />
+        <VisibilityCard data={meteoData} lang={language} />
+        <MoonCard data={moonData} lang={language} />
+        <SunCard data={sunData} lang={language} />
       </div>
     </>
   );
