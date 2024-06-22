@@ -10,7 +10,7 @@ export default function Header({ language, setLanguage }) {
   }
 
   return (
-    <header className="bg-blue-200 px-8 py-2 gap-4">
+    <header className="bg-blue-200 px-8 py-3 gap-4">
       {/* Render title as a separate line on small devices */}
       <p className="font-mono text-xl text-center pb-2 sm:hidden">
         Baseball&#39;s Weather Panel
@@ -33,7 +33,7 @@ export default function Header({ language, setLanguage }) {
           {/* Toggle between displaying in English and Chinese */}
           <div className="w-8">
             <p
-              className="text-lg header-icon cursor-pointer"
+              className="text-2xl header-icon cursor-pointer"
               onClick={toggleLanguage}
             >
               {language === "en" ? "EN" : "中"}
