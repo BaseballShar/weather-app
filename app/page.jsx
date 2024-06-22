@@ -1,5 +1,6 @@
 "use client";
 import DailyForecastCard from "@/components/DailyForecastCard";
+import Header from "@/components/Header";
 import HourlyForecastCard from "@/components/HourlyForecastCard";
 import HumidityCard from "@/components/HumidityCard";
 import LoadingPanel from "@/components/LoadingPanel";
@@ -142,10 +143,7 @@ export default function Home() {
 
   return (
     <>
-      <select onClick={(e) => setLanguage(e.target.value)}>
-        <option value="en">English</option>
-        <option value="zh">Chinese</option>
-      </select>
+      <Header language={language} setLanguage={setLanguage}/>
       <div className="weather-page">
         <HourlyForecastCard data={meteoData} />
         <DailyForecastCard data={nineDaysWeather} />
