@@ -1,7 +1,12 @@
 ## What is this ?
 This is a website for displaying comprehensive weather information in your location.
 
-Now it has temperature, humidity, rain, wain, wind ... with hourly and daily forecast.
+## Features
+- Hourly and daily weather forecast in high precision.
+- Click on daily forecast for extended weather summary.
+- Optimised layout according to screen sizes: phones, tablets and computers.
+- Accurate moon phase widget.
+- Support Traditional Chinese and English language.
 
 ## Why are you building it ?
 I wanted to learn and practice more web development skills (especially frontend for now), I went to gather weather information and try to render them nicely for easy viewing.
@@ -12,7 +17,6 @@ Yes! Surprisingly. You can use it for current weather report up to a few days in
 ## Any plans for the future ?
 Many in fact, that being said, I will list out a few areas for immediate improvement.
 - Better direction indicator for wind: Perhaps an animated compass or format using bearing i.e. N35ºE
-- More language support: Traditional Chinese & Store setting in localStorage
 - Light and dark mode
 - More weather data types or even astronomical data, for example: Planetary data.
 
