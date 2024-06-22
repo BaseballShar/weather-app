@@ -30,6 +30,8 @@ export default function Home() {
   });
   const [userLocation, setUserLocation] = useState(null);
 
+  const [language, setLanguage] = useState("en")
+
   const datas = [
     currentWeather,
     nineDaysWeather,
@@ -139,23 +141,29 @@ export default function Home() {
   }
 
   return (
-    <div className="weather-page">
-      <HourlyForecastCard data={meteoData} />
-      <DailyForecastCard data={nineDaysWeather} />
-      <WeatherCard
-        data={currentWeather}
-        meteoData={meteoData}
-        locationData={userLocation}
-      />
-      <TemperatureCard data={meteoData} />
-      <HumidityCard data={meteoData} />
-      <RainCard data={meteoData} />
-      <WindCard data={meteoData} />
-      <UVCard data={meteoData} />
-      <PressureCard data={meteoData} />
-      <VisibilityCard data={meteoData} />
-      <MoonCard data={moonData} />
-      <SunCard data={sunData} />
-    </div>
+    <>
+      <select onClick={(e) => setLanguage(e.target.value)}>
+        <option value="en">English</option>
+        <option value="zh">Chinese</option>
+      </select>
+      <div className="weather-page">
+        <HourlyForecastCard data={meteoData} />
+        <DailyForecastCard data={nineDaysWeather} />
+        <WeatherCard
+          data={currentWeather}
+          meteoData={meteoData}
+          locationData={userLocation}
+        />
+        <TemperatureCard data={meteoData} lang={language} />
+        <HumidityCard data={meteoData} />
+        <RainCard data={meteoData} />
+        <WindCard data={meteoData} />
+        <UVCard data={meteoData} />
+        <PressureCard data={meteoData} />
+        <VisibilityCard data={meteoData} />
+        <MoonCard data={moonData} />
+        <SunCard data={sunData} />
+      </div>
+    </>
   );
 }
