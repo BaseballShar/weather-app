@@ -1,7 +1,7 @@
 import { translation } from "@/app/translation";
 import { getWeatherIconURL, weatherEmoji } from "@/app/util";
 import moment from "moment";
-import "moment/locale/zh-HK";
+import "moment/locale/zh-hk";
 
 export default function HourlyForecastCard({ data, lang }) {
   const toHKOWeatherCode = {
@@ -51,7 +51,7 @@ export default function HourlyForecastCard({ data, lang }) {
       time: moment(data.hourly.time[idx]),
       timeDisplay: moment(data.hourly.time[idx]).locale("en").format("h A"),
       chineseTimeDisplay: `${moment(data.hourly.time[idx])
-        .locale("zh-HK")
+        .locale("zh-hk")
         .format("Ah")}時`,
       temp: Math.round(data.hourly.temperature_2m[idx]),
       rh: data.hourly.relative_humidity_2m[idx],
