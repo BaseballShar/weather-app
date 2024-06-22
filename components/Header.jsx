@@ -1,9 +1,10 @@
+import { translation } from "@/app/translation";
 import { FaGithub, FaHome, FaLinkedin } from "react-icons/fa";
 
 export default function Header({ language, setLanguage }) {
   function toggleLanguage() {
     if (language === "en") {
-      setLanguage("zh");
+      setLanguage("tc");
     } else {
       setLanguage("en");
     }
@@ -13,7 +14,7 @@ export default function Header({ language, setLanguage }) {
     <header className="bg-blue-200 px-8 py-3 gap-4">
       {/* Render title as a separate line on small devices */}
       <p className="font-mono text-xl text-center pb-2 sm:hidden">
-        Baseball&#39;s Weather Panel
+        {translation.title[language]}
       </p>
       <div className="flex justify-between items-center">
         <a href="https://baseballshar.github.io">
@@ -21,7 +22,7 @@ export default function Header({ language, setLanguage }) {
         </a>
         {/* Render title inline on large devices */}
         <p className="font-mono text-xl hidden sm:block">
-          Baseball&#39;s Weather Panel
+          {translation.title[language]}
         </p>
         <div className="flex gap-4 items-center">
           <a href="https://github.com/BaseballShar/weather-app">

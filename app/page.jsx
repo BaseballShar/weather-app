@@ -126,7 +126,7 @@ export default function Home() {
   useEffect(() => {
     async function getWeatherData() {
       apis.forEach(async (api) => {
-        let url = getAPIUrl(api.dataType);
+        let url = getAPIUrl(api.dataType, language);
         let res = await fetch(url);
         let data = await res.json();
         api.setter(data);
@@ -134,7 +134,7 @@ export default function Home() {
     }
 
     getWeatherData();
-  }, [geocode]);
+  }, [geocode, language]);
 
   /* If any data is null, render the loading panel */
   if (datas.some((item) => item == null)) {

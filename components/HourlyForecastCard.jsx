@@ -1,7 +1,9 @@
+import { translation } from "@/app/translation";
 import { getWeatherIconURL, weatherEmoji } from "@/app/util";
 import moment from "moment";
+import "moment/locale/zh-HK";
 
-export default function HourlyForecastCard({ data }) {
+export default function HourlyForecastCard({ data, lang }) {
   const toHKOWeatherCode = {
     day: {
       0: 50, // Clear sky
@@ -47,7 +49,10 @@ export default function HourlyForecastCard({ data }) {
   const hourlyForecasts = data.hourly.time.map((_, idx) => {
     const forecasts = {
       time: moment(data.hourly.time[idx]),
-      timeDisplay: moment(data.hourly.time[idx]).format("h A"),
+      timeDisplay: moment(data.hourly.time[idx]).locale("en").format("h A"),
+      chineseTimeDisplay: `${moment(data.hourly.time[idx])
+        .locale("zh-HK")
+        .format("Ah")}時`,
       temp: Math.round(data.hourly.temperature_2m[idx]),
       rh: data.hourly.relative_humidity_2m[idx],
       rain: data.hourly.rain[idx],
@@ -67,7 +72,7 @@ export default function HourlyForecastCard({ data }) {
 
   return (
     <div className="forecast-card">
-      <p className="forecast-title">Hourly forecast</p>
+      <p className="forecast-title">{translation.hourlyForecast[lang]}</p>
       {next12HoursForecasts.map((forecast, idx) => (
         <div key={idx} className="forecast-item">
           <div className="flex flex-col sm:flex-row sm:gap-8 items-center">
@@ -80,10 +85,16 @@ export default function HourlyForecastCard({ data }) {
               }
               alt="weather icon"
             />
-            <p>{forecast.timeDisplay}</p>
+            <p>
+              {lang === "en"
+                ? forecast.timeDisplay
+                : forecast.chineseTimeDisplay}
+            </p>
           </div>
           <div>
-            <p>UV: {forecast.uv}</p>
+            <p>
+              {translation.uvShort[lang]}: {forecast.uv}
+            </p>
             <p>
               {String.fromCodePoint(weatherEmoji.rain)} {forecast.rain}mm
             </p>

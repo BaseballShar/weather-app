@@ -1,9 +1,10 @@
 "use client";
+import { translation } from "@/app/translation";
 import { getWeatherIconURL, weatherEmoji } from "@/app/util";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
 
-export default function DailyForecastCard({ data }) {
+export default function DailyForecastCard({ data, lang }) {
   const [selected, setSelected] = useState(null);
 
   const forecasts = data.weatherForecast;
@@ -35,7 +36,7 @@ export default function DailyForecastCard({ data }) {
 
   return (
     <div className="forecast-card">
-      <p className="forecast-title">9 Days forecast</p>
+      <p className="forecast-title">{translation.dailyForecast[lang]}</p>
       {forecasts.map((forecast, idx) => {
         const forecastData = extractForecastData(forecast);
         return (
