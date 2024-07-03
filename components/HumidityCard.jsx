@@ -11,7 +11,7 @@ export default function HumidityCard({ data, lang }) {
       <p className="card-content">{humidity}%</p>
       <p className="card-remark">
         {translation.dewpoint[lang]}: {dewpoint}
-        {degSymbol}
+        {degSymbol}C
       </p>
     </div>
   );

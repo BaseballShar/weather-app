@@ -11,15 +11,15 @@ export default function TemperatureCard({ data , lang}) {
       <p className="card-title">{translation.temperature[lang]}</p>
       <p className="card-content">
         {currentTemp}
-        {degSymbol}
+        {degSymbol}C
       </p>
       <p className="card-remark">
         {translation.today[lang]}: {minTemp} - {maxTemp}
-        {degSymbol}
+        {degSymbol}C
       </p>
       <p className="card-remark">
         {translation.feelsLike[lang]}: {apparentTemp}
-        {degSymbol}
+        {degSymbol}C
       </p>
     </div>
   );
