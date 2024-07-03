@@ -16,7 +16,6 @@ Yes! Surprisingly. You can use it for current weather report up to a few days in
 
 ## Any plans for the future ?
 Many in fact, that being said, I will list out a few areas for immediate improvement.
-- Better direction indicator for wind: Perhaps an animated compass or format using bearing i.e. N35ºE
 - Light and dark mode
 - More weather data types or even astronomical data, for example: Planetary data.
 
